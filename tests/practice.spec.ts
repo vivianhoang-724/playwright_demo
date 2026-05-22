@@ -1,5 +1,6 @@
 import { test, expect } from '@playwright/test'
 
+
 test('Search playing cards', async ({ page }) => {
     await page.goto('https://www.qpmarketnetwork.com/')
 
