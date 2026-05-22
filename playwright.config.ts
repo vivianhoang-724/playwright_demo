@@ -16,7 +16,7 @@ export default defineConfig({
 
   use: {
 
-    headless: false,
+    headless: !!process.env.CI,
 
     trace: 'on-first-retry',
 
@@ -24,14 +24,6 @@ export default defineConfig({
 
   projects: [
 
-    // Setup project
-    {
-      name: 'setup',
-
-      testMatch: /.*\.setup\.ts/,
-    },
-
-    // Chromium project
     {
       name: 'chromium',
 
@@ -39,39 +31,24 @@ export default defineConfig({
 
         ...devices['Desktop Chrome'],
       },
-      dependencies: ['setup'],
     },
 
-    // Firefox
     {
       name: 'firefox',
 
       use: {
 
         ...devices['Desktop Firefox'],
-
-        storageState:
-          'playwright/.auth/user.json',
-
       },
-
-      dependencies: ['setup'],
     },
 
-    // Webkit
     {
       name: 'webkit',
 
       use: {
 
         ...devices['Desktop Safari'],
-
-        storageState:
-          'playwright/.auth/user.json',
-
       },
-
-      dependencies: ['setup'],
     },
 
   ],
